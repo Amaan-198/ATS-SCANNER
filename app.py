@@ -84,7 +84,6 @@ class ResumeApp:
             "📝 RESUME BUILDER": self.render_builder,
             "📊 DASHBOARD": self.render_dashboard,
             "🎯 JOB SEARCH": self.render_job_search,
-            "💬 FEEDBACK": self.render_feedback_page,
             "ℹ️ ABOUT": self.render_about
         }
 
@@ -471,37 +470,17 @@ class ResumeApp:
         col1, col2, col3 = st.columns([1, 3, 1])
         
         with col2:
-            # GitHub star button with lottie animation
-            st.markdown("""
-            <div style='display: flex; justify-content: center; align-items: center; margin-bottom: 10px;'>
-                <a href='https://github.com/Hunterdii/Smart-AI-Resume-Analyzer' target='_blank' style='text-decoration: none;'>
-                    <div style='display: flex; align-items: center; background-color: #24292e; padding: 5px 10px; border-radius: 5px; transition: all 0.3s ease;'>
-                        <svg height="16" width="16" viewBox="0 0 16 16" version="1.1" style='margin-right: 5px;'>
-                            <path fill-rule="evenodd" d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z" fill="gold"></path>
-                        </svg>
-                        <span style='color: white; font-size: 14px;'>Star this repo</span>
-                    </div>
-                </a>
-            </div>
-            """, unsafe_allow_html=True)
-            
             # Footer text
             st.markdown("""
             <p style='text-align: center;'>
-                Powered by <b>Streamlit</b> and <b>Google Gemini AI</b> | Developed by 
-                <a href="https://www.linkedin.com/in/patel-hetkumar-sandipbhai-8b110525a/" target="_blank" style='text-decoration: none; color: #FFFFFF'>
-                    <b>Het Patel (Hunterdii)</b>
-                </a>
-            </p>
-            <p style='text-align: center; font-size: 12px; color: #888888;'>
-                "Every star counts! If you find this project helpful, please consider starring the repo to help it reach more people."
+                Powered by <b>Streamlit</b> and <b>Google Gemini AI</b>
             </p>
             """, unsafe_allow_html=True)
 
     def load_image(self, image_name):
         """Load image from static directory"""
         try:
-            image_path = f"c:/Users/shree/Downloads/smart-resume-ai/{image_name}"
+            image_path = f"assets/{image_name}"
             with open(image_path, "rb") as f:
                 image_bytes = f.read()
             encoded = base64.b64encode(image_bytes).decode()
@@ -546,8 +525,6 @@ class ResumeApp:
     def render_dashboard(self):
         """Render the dashboard page"""
         self.dashboard_manager.render_dashboard()
-
-        st.toast("Check out these repositories: [Awesome Hacking](https://github.com/Hunterdii/Awesome-Hacking)", icon="ℹ️")
 
 
     def render_empty_state(self, icon, message):
@@ -1001,7 +978,6 @@ class ResumeApp:
                 print(f"Full traceback: {traceback.format_exc()}")
                 st.error(f"❌ Error preparing resume data: {str(e)}")
 
-        st.toast("Check out these repositories: [30-Days-Of-Rust](https://github.com/Hunterdii/30-Days-Of-Rust)", icon="ℹ️")
 
     def render_about(self):
         """Render the about page"""
@@ -1018,13 +994,6 @@ class ResumeApp:
                     return f"data:image/jpeg;base64,{encoded}"
             except:
                 return None
-
-        # Get image path and convert to base64
-        image_path = os.path.join(
-    os.path.dirname(__file__),
-    "assets",
-     "124852522.jpeg")
-        image_base64 = get_image_as_base64(image_path)
 
         apply_modern_styles()
 
@@ -1164,28 +1133,10 @@ class ResumeApp:
         # Profile Section
         st.markdown(f"""
             <div class="profile-section">
-                <img src="{image_base64 if image_base64 else 'https://avatars.githubusercontent.com/Hunterdii'}"
-                     alt="Het Patel"
-                     class="profile-image"
-                     onerror="this.onerror=null; this.src='https://avatars.githubusercontent.com/Hunterdii';">
-                <h2 class="profile-name">Het Patel (Hunterdii)</h2>
-                <p class="profile-title">Full Stack Developer & AI/ML Enthusiast</p>
-                <div class="social-links">
-                    <a href="https://github.com/Hunterdii" class="social-link" target="_blank">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/patel-hetkumar-sandipbhai-8b110525a/" class="social-link" target="_blank">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="mailto:hunterdii9879@gmail.com" class="social-link" target="_blank">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
+                <h2 class="profile-name">About Us</h2>
                 <p class="bio-text">
-                    Hello! I'm a passionate Full Stack Developer with expertise in AI and Machine Learning.
-                    I created Smart Resume AI to revolutionize how job seekers approach their career journey.
-                    With my background in both software development and AI, I've designed this platform to
-                    provide intelligent, data-driven insights for resume optimization.
+                    We are a team of passionate developers dedicated to creating tools that help people succeed in their careers.
+                    Smart Resume AI is designed to provide intelligent, data-driven insights for resume optimization.
                 </p>
             </div>
         """, unsafe_allow_html=True)
@@ -1239,7 +1190,6 @@ class ResumeApp:
             </div>
         """, unsafe_allow_html=True)
 
-        st.toast("Check out these repositories: [Iriswise](https://github.com/Hunterdii/Iriswise)", icon="ℹ️")
 
     def render_analyzer(self):
         """Render the resume analyzer page"""
@@ -2798,7 +2748,6 @@ class ResumeApp:
                             import traceback as tb
                             st.code(tb.format_exc())
 
-        st.toast("Check out these repositories: [Awesome Java](https://github.com/Hunterdii/Awesome-Java)", icon="ℹ️")
 
 
     def render_home(self):
@@ -2833,8 +2782,6 @@ class ResumeApp:
         
         st.markdown('</div>', unsafe_allow_html=True)
         
-        st.toast("Check out these repositories: [AI-Nexus(AI/ML)](https://github.com/Hunterdii/AI-Nexus)", icon="ℹ️")
-
         # Call-to-Action with Streamlit navigation
         col1, col2, col3 = st.columns([1, 1, 1])
         with col2:
@@ -2850,62 +2797,6 @@ class ResumeApp:
         """Render the job search page"""
         render_job_search()
 
-        st.toast("Check out these repositories: [GeeksforGeeks-POTD](https://github.com/Hunterdii/GeeksforGeeks-POTD)", icon="ℹ️")
-
-
-    def render_feedback_page(self):
-        """Render the feedback page"""
-        apply_modern_styles()
-        
-        # Page Header
-        page_header(
-            "Feedback & Suggestions",
-            "Help us improve by sharing your thoughts"
-        )
-        
-        # Initialize feedback manager
-        feedback_manager = FeedbackManager()
-        
-        # Create tabs for form and stats
-        form_tab, stats_tab = st.tabs(["Submit Feedback", "Feedback Stats"])
-        
-        with form_tab:
-            feedback_manager.render_feedback_form()
-            
-        with stats_tab:
-            feedback_manager.render_feedback_stats()
-
-        st.toast("Check out these repositories: [TryHackMe Free Rooms](https://github.com/Hunterdii/tryhackme-free-rooms)", icon="ℹ️")
-
-
-    def show_repo_notification(self):
-        message = """
-<div style="background-color: #1e1e1e; border-radius: 10px; border: 1px solid #4b6cb7; padding: 10px; margin: 10px 0; color: white;">
-    <div style="margin-bottom: 10px;">Check out these other repositories:</div>
-    <div style="margin-bottom: 5px;"><b>Hacking Resources:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/tryhackme-free-rooms" target="_blank" style="color: #4CAF50;">TryHackMe Free Rooms</a></li>
-        <li><a href="https://github.com/Hunterdii/Awesome-Hacking" target="_blank" style="color: #4CAF50;">Awesome Hacking</a></li>
-    </ul>
-    <div style="margin-bottom: 5px;"><b>Programming Languages:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/Awesome-Java" target="_blank" style="color: #4CAF50;">Awesome Java</a></li>
-        <li><a href="https://github.com/Hunterdii/30-Days-Of-Rust" target="_blank" style="color: #4CAF50;">30 Days Of Rust</a></li>
-    </ul>
-    <div style="margin-bottom: 5px;"><b>Data Structures & Algorithms:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/GeeksforGeeks-POTD" target="_blank" style="color: #4CAF50;">GeeksforGeeks POTD</a></li>
-        <li><a href="https://github.com/Hunterdii/Leetcode-POTD" target="_blank" style="color: #4CAF50;">Leetcode POTD</a></li>
-    </ul>
-    <div style="margin-bottom: 5px;"><b>AI/ML Projects:</b></div>
-    <ul style="margin-top: 0; padding-left: 20px;">
-        <li><a href="https://github.com/Hunterdii/AI-Nexus" target="_blank" style="color: #4CAF50;">AI Nexus</a></li>
-    </ul>
-    <div style="margin-top: 10px;">If you find this project helpful, please consider ⭐ starring the repo!</div>
-</div>
-"""
-        st.sidebar.markdown(message, unsafe_allow_html=True)
-
 
     def main(self):
         """Main application entry point"""
@@ -2920,7 +2811,7 @@ class ResumeApp:
             # Navigation buttons
             for page_name in self.pages.keys():
                 if st.button(page_name, use_container_width=True):
-                    cleaned_name = page_name.lower().replace(" ", "_").replace("🏠", "").replace("🔍", "").replace("📝", "").replace("📊", "").replace("🎯", "").replace("💬", "").replace("ℹ️", "").strip()
+                    cleaned_name = page_name.lower().replace(" ", "_").replace("🏠", "").replace("🔍", "").replace("📝", "").replace("📊", "").replace("🎯", "").replace("ℹ️", "").strip()
                     st.session_state.page = cleaned_name
                     st.rerun()
 
@@ -2958,7 +2849,7 @@ class ResumeApp:
                                 st.error(f"Error during login: {str(e)}")
         
             # Display the repository notification in the sidebar
-            self.show_repo_notification()
+
 
         # Force home page on first load
         if 'initial_load' not in st.session_state:
@@ -2970,7 +2861,7 @@ class ResumeApp:
         current_page = st.session_state.get('page', 'home')
         
         # Create a mapping of cleaned page names to original names
-        page_mapping = {name.lower().replace(" ", "_").replace("🏠", "").replace("🔍", "").replace("📝", "").replace("📊", "").replace("🎯", "").replace("💬", "").replace("ℹ️", "").strip(): name 
+        page_mapping = {name.lower().replace(" ", "_").replace("🏠", "").replace("🔍", "").replace("📝", "").replace("📊", "").replace("🎯", "").replace("ℹ️", "").strip(): name
                        for name in self.pages.keys()}
         
         # Render the appropriate page
