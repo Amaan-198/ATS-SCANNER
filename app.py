@@ -10,7 +10,6 @@ from ui_components import (
     page_header, render_analytics_section, render_activity_section,
     render_suggestions_section
 )
-from feedback.feedback import FeedbackManager
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Inches, Pt
 from docx import Document
